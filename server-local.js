@@ -2,4 +2,6 @@
 
 const app = require('./express/server');
 
-app.listen(3000, () => console.log('Local app listening on port 3000!'));
+let port = 4000;
+
+app.listen(port, () => console.log('Local app listening on port '+port+'!'));

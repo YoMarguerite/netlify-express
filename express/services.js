@@ -26,7 +26,9 @@ join = function (req, res) {
 leave = function (req,res) {
     let pseudo = req.body.pseudo;
     let code = req.body.code;
+    let expulsion = req.body.expulsion
     let game = Manage.getGame(code);
+    
     game.delPlayer(pseudo);
 
     res.status(200);
@@ -35,7 +37,11 @@ leave = function (req,res) {
         res.json({message:"You have delete the game "+code+"."});
     }
     else{
-        res.json({message:"You have leave the game "+code+"."});
+        res.json({
+            message: expulsion ? 
+                        "You are excluded from the game "+code+"." : 
+                        "You have leave the game "+code+"."
+        });
     }
 };
 
@@ -49,7 +55,7 @@ getgame = function(req, res) {
 
 getgames = function(req, res) {
     res.status(200);
-    res.json(Manage.games);
+    res.json(Manage.getGames());
 };
 
 

@@ -21,6 +21,33 @@ class Game{
       this.sentence = Manage.generateSentence();
       this.code = code;
       this.winners = [];
+
+      this.wait = true;
+      this.defineTimeout();
+    };
+
+    defineTimeout = function() {
+      if(this.wait) {
+        this.wait = false;
+        let self = this;
+        setTimeout(function() {
+          self.defineTimeout();
+        }, 10000);
+      }
+      else {
+        console.log("autodestruction")
+        Manage.delGame(this.code);
+      }
+    };
+
+    getData = function() {
+      return {
+        creator : this.creator,
+        players : this.players,
+        sentence : this.sentence,
+        code : this.code,
+        winners : this.winners
+      }
     };
 
     getPlayer = function(pseudo) {
@@ -76,7 +103,15 @@ const Manage = {
   games: [],
 
   getGame: function(code) {
-    return this.games.find((game) => { return game.code === code});
+    let game = this.games.find((game) => { return game.code === code});
+    game.wait = true;
+    return game.getData();
+  },
+
+  getGames: function(code) {
+    return this.games.map((game) => {
+      return game.getData();
+    });
   },
   
   addGame: function(pseudo) {
@@ -84,7 +119,7 @@ const Manage = {
     if(typeof pseudo === 'string' && typeof code === 'string') {
       let game = new Game(pseudo, code);
       this.games.push(game);
-      return game;
+      return game.getData();
     }
     return false;
   },

@@ -5,7 +5,7 @@ const options = {
             title: 'Swagger',
             version: '1.0.0',
         },
-        host: 'localhost:4000',
+        host: 'https://voicerback.netlify.app/.netlify/functions/server',
         basePath: '/v1',
         produces: [
             "application/json",
@@ -22,7 +22,7 @@ const options = {
         }
     },
     basedir: __dirname, //app absolute path
-    files: ['index.js'] //Path to the API handle folder
+    files: ['server.js'] //Path to the API handle folder
 };
 
 module.exports = { options };

@@ -28,7 +28,7 @@ gameNotExist = function(res) {
 
 playerNotIn = function(res) {
     res.status(412);
-    let message = "The player you are searching is not a member of the game.";
+    let message = "You are excluded from the game.";
     console.error(message);
     res.json({error: message});
 }

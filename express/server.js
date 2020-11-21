@@ -27,6 +27,13 @@ app.use((req, res, next) => {
 });
 
 const router = express.Router();
+
+/**
+ * get status Server
+ * @route Get / 
+ * @group Status
+ * @returns {object} 200 - return html page
+ */
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Server on</h1>');

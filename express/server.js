@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 
 
 app.use((req, res, next) => {
-//  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Origin', 'https://voicer-front.netlify.app');
+  res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Origin', 'https://voicer-front.netlify.app');
 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
@@ -26,6 +26,15 @@ app.use((req, res, next) => {
       res.send();
   });
 });
+
+app.use((req, res, next) => {
+  if(req.headers.origin !== 'http://localhost:8080') {
+    res.status(403).end();
+  }
+  else{
+    next();
+  }
+})
 
 const router = express.Router();
 

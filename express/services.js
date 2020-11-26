@@ -26,7 +26,7 @@ join = function (req, res) {
 leave = function (req,res) {
     let pseudo = req.body.pseudo;
     let code = req.body.code;
-    let expulsion = req.body.expulsion
+    let expulsion = req.body.expulsion;
     let game = Manage.getGame(code);
     
     game.delPlayer(pseudo);
@@ -39,10 +39,20 @@ leave = function (req,res) {
     else{
         res.json({
             message: expulsion ? 
-                        "You are excluded from the game "+code+"." : 
+                        "You have exclude "+pseudo+" from the game "+code+"." : 
                         "You have leave the game "+code+"."
         });
     }
+};
+
+sentence = function(req, res) {
+    let code = req.body.code;
+    let sentence = req.body.sentence;
+    let game = Manage.getGame(code);
+    game.setSentence(sentence);
+
+    res.status(200);
+    res.json({ message: "The sentence hase been changed.", game: game });
 };
 
 getgame = function(req, res) {
@@ -139,6 +149,7 @@ module.exports = {
     create,
     join,
     leave,
+    sentence,
     getgame,
     getgames,
     ready,

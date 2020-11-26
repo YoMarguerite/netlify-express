@@ -26,6 +26,8 @@ class Game{
       this.defineTimeout();
     };
 
+    // Check if the game is using
+
     defineTimeout = function() {
       if(this.wait) {
         this.wait = false;
@@ -40,15 +42,24 @@ class Game{
       }
     };
 
+    // Return essential data of a game
+
     getData = function() {
       return {
         creator : this.creator,
         players : this.players,
         sentence : this.sentence,
         code : this.code,
-        winners : this.winners
+        winners : this.winners,
+        getPlayer: this.getPlayer,
+        addPlayer: this.addPlayer,
+        delPlayer: this.delPlayer,
+        defineWinner: this.defineWinner,
+        setSentence: (str) => { this.sentence = str; },
       }
     };
+
+    // Manage Player of a game
 
     getPlayer = function(pseudo) {
       return this.players.find((player) => { return player.pseudo == pseudo});
@@ -104,8 +115,11 @@ const Manage = {
 
   getGame: function(code) {
     let game = this.games.find((game) => { return game.code === code});
-    game.wait = true;
-    return game.getData();
+    if(game) {
+      game.wait = true;
+      return game.getData();
+    }
+    return false;
   },
 
   getGames: function(code) {

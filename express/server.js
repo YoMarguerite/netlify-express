@@ -95,6 +95,27 @@ service.leave);
 
 
 /**
+ * Change the sentence of a game
+ * @route POST /sentence 
+ * @group Member of a game
+ * @param {string} pseudo - user pseudo.
+ * @param {string} code - user pseudo.
+ * @param {string} sentence - user pseudo
+ * @returns {object} 200 - return game object
+ * @returns {Error}  401 - pseudo is empty
+ * @returns {Error}  403 - code is empty
+ * @returns {Error}  410 - game with this code doesn't exist
+ * @returns {Error}  412 - no player with this pseudo in the game
+ */
+router.post('/sentence',
+check.emptyPseudo,
+check.emptyCode,
+check.noGame,
+check.noPlayer,
+service.sentence);
+
+
+/**
  * get an instance of game
  * @route POST /getgame 
  * @group Essential function of a game
@@ -107,6 +128,7 @@ service.leave);
 router.post('/getgame',
 check.emptyCode,
 check.noGame,
+check.noPlayer,
 service.getgame);
 
 /**

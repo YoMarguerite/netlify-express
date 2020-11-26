@@ -1,11 +1,11 @@
 {
-  "name": "netlify-express",
+  "name": "voicerback_netlify",
   "version": "0.0.1",
-  "description": "Example of how to deploy a Express.js Netlify app.",
+  "description": "Back of voicer, deploy on netlify.",
   "main": "functions/server.js",
   "scripts": {
-    "build": "netlify-lambda build express",
-    "start": "nodemon server-local.js"
+    "start": "nodemon server-local.js",
+    "build": "netlify-lambda build express"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "netlify",
     "express.js"
   ],
-  "author": "neverendingqs",
+  "author": "YoMarguerite",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/neverendingqs/netlify-express/issues"

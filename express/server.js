@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  if(req.headers.origin !== 'http://localhost:8080') {
+  if(req.headers.origin !== 'https://voicer-front.netlify.app/') {
     res.status(403).end();
   }
   else{
